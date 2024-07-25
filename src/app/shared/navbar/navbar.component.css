@@ -1,0 +1,10 @@
+.texts {
+    color: rgb(0, 255, 0);
+}
+.local{
+    color: darkgreen;
+}
+.recent-block{
+    background: teal;
+    color: white;
+}
