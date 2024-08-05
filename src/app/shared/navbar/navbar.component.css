@@ -1,10 +1,18 @@
-.texts {
-    color: rgb(0, 255, 0);
-}
-.local{
-    color: darkgreen;
-}
-.recent-block{
-    background: teal;
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-toolbar{
+    background: #005cbb;
     color: white;
-}
+    margin-bottom: 10px;
+    
+  }
+  .mat-mdc-raised-button{
+    color: #005cbb !important;
+  }
+  .min{
+    min-height: 890px;
+  }
+  .active-link{
+    background-color: black;
+  color: red;  }

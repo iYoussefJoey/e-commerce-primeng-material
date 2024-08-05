@@ -1,1 +1,53 @@
-<p>home works</p>
+
+<div class="container">
+    <div class="row g-0">
+        <div class="col-md-9">
+            <div class="card">
+                <p-carousel 
+                    [value]="products" 
+                    [numVisible]="3" 
+                    [numScroll]="3" 
+                    [circular]="true" 
+                    [responsiveOptions]="responsiveOptions" 
+                    autoplayInterval="3000">
+                    <ng-template let-product pTemplate="item">
+                            <div class="border-1 surface-border border-round m-2 p-3">
+                                <div class="mb-3">
+                                    <div class="relative mx-auto">
+                                        <img height="200"
+                                            [src]="product.imageCover" 
+                                            alt="products"
+                                            class="w-full border-round" />
+                                        <p-tag 
+                                            [value]="getNames(product.quantity)" 
+                                            [severity]="getSeverity(product.quantity)" 
+                                            class="absolute" 
+                                            [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                                    </div>
+                                </div>
+                                <div class="mb-3 font-medium">
+                                    {{ product.title | trim:70 }}
+                                </div>
+                                <div class="flex justify-content-between align-items-center">
+                                    <div class="mt-0 font-semibold text-xl">
+                                        {{product.price |currency:'EUR'}}
+                                    </div>
+                                    <span>
+                                        <p-button icon="pi pi-heart" raised="true" severity="secondary" [outlined]="true" />
+                                        <p-button icon="pi pi-shopping-cart" raised="true"  styleClass="ml-2" />
+                                    </span>
+                                </div>
+                            </div>
+                        </ng-template>
+                </p-carousel>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <img src="../../../assets/images/R.jfif"  class="w-100" height="200" alt="">
+            <img src="../../../assets/images/main-banner-laptop.webp"  class="w-100" height="200" alt="">
+            <img src="../../../assets/images/R (1).jfif"  class="w-100 " height="200" alt="">
+        </div>
+    </div>
+</div>
+<app-mainslider></app-mainslider>
+ <app-feature-product></app-feature-product>

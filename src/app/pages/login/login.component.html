@@ -1,74 +1,16 @@
-<div class="container">
-  <div class="w-75 mx-auto my-3">
-    <h3>Login Now:</h3>
-    <form [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
-      <div>
-        <label for="email"> Email : <Span class="da">*</Span></label>
-        <input
-          type="email"
-          formControlName="email"
-          name="email"
-          class="form-control"
-          id=""
-        />
-        <p
-          class="alert alert-danger"
-          *ngIf="
-            loginForm.get('email')?.touched &&
-            loginForm.get('email')?.getError('required')
-          "
-        >
-          E-Mail is required
-        </p>
-        <p
-          class="alert alert-danger"
-          *ngIf="
-            loginForm.get('email')?.touched &&
-            loginForm.get('email')?.getError('email')
-          "
-        >
-          E-mail is not valid
-        </p>
-
-        <label for="password"> Password : <Span class="da">*</Span></label>
-        <input
-          type="password"
-          formControlName="password"
-          name="password"
-          class="form-control"
-          id=""
-        />
-        <p
-          class="alert alert-danger"
-          *ngIf="
-            loginForm.get('password')?.touched &&
-            loginForm.get('password')?.getError('required')
-          "
-        >
-          Password Required
-        </p>
-        <p
-          class="alert alert-danger"
-          *ngIf="
-            loginForm.get('password')?.touched &&
-            loginForm.get('password')?.getError('minlength')
-          "
-        >
-          Password must be at least 6 characters
-        </p>
-        <p
-          class="alert alert-danger"
-          *ngIf="
-            loginForm.get('password')?.touched &&
-            loginForm.get('password')?.getError('pattern')
-          "
-        >
-          Password must contains at least one small letter, one capital letter,
-          one number.
-        </p>
-
-        <button [disabled]="loginForm.invalid" class="btn bg-main my-2 d-block ms-auto">Login <i class="fa fa-spinner fa-spin"></i></button>
+<div class="container"  >
+    
+        <div class="d-flex justify-content-center align-items-center min-vh-100">   
+           <form [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
+            <h2 class="text-center"><strong>Login:</strong></h2>
+          <mat-error class="text-center">{{apiError}}</mat-error>          <lib-registerform  [placeholder]="'Ex.abomos3belarmoty@gmail.com'" [type]="'email'" [label]="'Enter your E-mail'" controlName="email" >          <mat-error *ngIf="loginForm.get('email')?.getError('email')"></mat-error>
+          </lib-registerform>
+          <lib-registerform keydown [placeholder]="'Ex.!P123b@'" [type]="'password'" [label]="'Enter your security'" controlName="password" ></lib-registerform>
+          <div class="d-flex">
+          <button class="ms-auto w-25" color="primary" mat-raised-button [disabled]="!loginForm.valid" type="submit">
+            <mat-spinner *ngIf="isLoading" diameter="25" color="warn"></mat-spinner> <span *ngIf="!isLoading">Login</span></button>
+        </div>
+        </form>
       </div>
-    </form>
-  </div>
+
 </div>

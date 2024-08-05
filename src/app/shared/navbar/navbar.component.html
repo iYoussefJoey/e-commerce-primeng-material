@@ -1,5 +1,5 @@
 
-    <nav class="navbar navbar-expand-lg bg-light">
+    <!-- <-- <nav class="navbar navbar-expand-lg bg-light">
       <div class="container">
         <a class="navbar-brand" routerLink="home"> <i class="fa-solid fa-cart-shopping texts"></i>FreshCart</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
           >
         </li>
         <li class="nav-item active">
-          <a class="nav-link" routerLink="cart" routerLinkActive="recent-block"
+          <a class="nav-link" routerLink="cart" routerLinkActive="active-link"
             >Cart <span class="sr-only">(current)</span></a
           >
         </li>
@@ -75,4 +75,57 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav>  -->
+<mat-toolbar color="primary" class="mat-elevation-z7">
+  <button (click)="drawer.toggle()" mat-icon-button type="button" class="example-icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span><mat-icon color="warn">shopping_cart</mat-icon> E-Commerce</span>
+  <button  class="m-2" mat-raised-button   routerLinkActive="mat-warn" routerLink="/settings">Settings Module <mat-icon >mood</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+  <ng-template [ngIf]="!isLogin">
+  <button  mat-raised-button   routerLinkActive="mat-warn" routerLink="/login">Sign-In <mat-icon >mood</mat-icon>
+  </button>
+  <button  mat-raised-button   routerLinkActive="mat-warn" routerLink="/register">Register <mat-icon >how_to_reg</mat-icon>
+  </button>
+</ng-template> 
+<!--  -->
+<mat-icon class="cursor-pointer" mat-icon-button  matBadgeColor="warn" matBadge={{numOfCartItems}}  [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()">
+  <mat-icon   >add_shopping_cart</mat-icon>
+</mat-icon>  
+<!--  -->
+<button  mat-icon-button  *ngIf="isLogin" (click)="singOut()" > <mat-icon  >logout</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-drawer-container #autosize>
+  <mat-drawer #drawer mode="push" >
+    <mat-nav-list>
+      <mat-list-item>
+  <button mat-raised-button routerLinkActive="mat-warn" *ngIf="isLogin"  routerLink="/home"><mat-icon>home</mat-icon>Home</button>    
+   </mat-list-item>
+      <mat-list-item>
+        <button mat-raised-button routerLinkActive="mat-warn"*ngIf="isLogin"  routerLink="/cart"> <mat-icon>shopping_cart</mat-icon>Carts</button>   
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-raised-button routerLinkActive="mat-warn" *ngIf="isLogin"  routerLink="/products"><mat-icon>money_off</mat-icon>Products</button>   
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-raised-button routerLinkActive="mat-warn"  *ngIf="isLogin"  routerLink="/categories" ><mat-icon>view_agenda</mat-icon>Categories</button>   
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-raised-button routerLinkActive="mat-warn"  *ngIf="isLogin" routerLink="/brands" ><mat-icon>branding_watermark</mat-icon>Brands</button>    
+       </mat-list-item>
+      <mat-list-item>
+        <button mat-raised-button routerLinkActive="mat-warn"  *ngIf="!isLogin" routerLink="/login" ><mat-icon>branding_watermark</mat-icon>log in to access</button>    
+       </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="text-center min">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>    
+  </mat-drawer-content>
+</mat-drawer-container>
+ 

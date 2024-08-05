@@ -1,0 +1,38 @@
+<div class="container"> 
+    <div *ngIf="isloading" class="d-flex justify-content-center align-items-center h-100">
+        <p-progressSpinner></p-progressSpinner>
+        <div class="d-block text-center mt-3">Loading, please wait...</div>
+    </div> 
+    <div *ngIf="!isloading">
+        <h2>Shipping Address</h2>
+        <form [formGroup]="shippingAddress" (ngSubmit)="load()">
+            <div class="container flex flex-column md:flex-row gap-3">
+                <p-inputGroup>
+                    <p-inputGroupAddon>
+                        <i class="pi pi-info"></i>
+                    </p-inputGroupAddon>
+                    <input pInputText class="ng-dirty" formControlName="details" placeholder="details" />
+                </p-inputGroup>
+                <p-inputGroup>
+                    <p-inputGroupAddon>Number</p-inputGroupAddon>
+                    <input formControlName="phone" class="ng-dirty" type="text" pInputText placeholder="phone" />
+                    <p-inputGroupAddon>+20</p-inputGroupAddon>
+                </p-inputGroup>
+                <p-inputGroup>
+                    <p-inputGroupAddon>City</p-inputGroupAddon>
+                    <input type="text" class="ng-dirty" formControlName="city" pInputText placeholder="city" />
+                </p-inputGroup>
+            </div>
+            <div class="flex justify-content-end my-2 gap-3">
+                <p-button 
+                    type="submit"
+                    label="Go to Payment" 
+                    icon="pi pi-money-bill" 
+                    [loading]="loading"
+                    [disabled]="!shippingAddress.valid" 
+                    (onClick)="load()"
+                />
+            </div>
+        </form>
+    </div>
+</div>

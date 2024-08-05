@@ -1,1 +1,36 @@
-<p>mainslider works!</p>
+<div class="card container">
+    <p-carousel 
+        [value]="categoriesList" 
+        [numVisible]="4" 
+        [numScroll]="3" 
+        [circular]="true" 
+        [responsiveOptions]="responsiveOptions" 
+        autoplayInterval="3000">
+        <ng-template let-product pTemplate="item">
+                <div class="border-1 surface-border border-round m-2 p-3">
+                    <div class="mb-3">
+                        <div class="relative mx-auto">
+                            <img height="300"
+                                [src]="product.image" 
+                                alt="products"
+                                class="w-full border-round" />
+                            <p-tag 
+                                [value]="product.slug | uppercase" 
+                                [severity]="getSeverity(product)" 
+                                class="absolute" 
+                                [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                        </div>
+                    </div>
+                    <div class="justify-content-between align-items-center">
+                        <div class="mt-0 font-semibold text-xl">
+                            {{ product.name }}
+                        </div>
+                        <span>
+                            <p-button icon="pi pi-thumbs-down-fill" raised="true" severity="secondary"  outlined="true" />
+                            <p-button icon="pi pi-heart-fill" raised="true" styleClass="ml-2" />
+                        </span>
+                    </div>
+                </div>
+            </ng-template>
+    </p-carousel>
+</div>

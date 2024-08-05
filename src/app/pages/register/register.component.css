@@ -1,4 +1,6 @@
-.da{ 
-    color: red;
-
-}
+.example-card {
+    max-width: 600px;
+  }
+  button{
+    margin: 5px;
+  }

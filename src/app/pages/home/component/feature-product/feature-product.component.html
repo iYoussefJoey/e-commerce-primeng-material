@@ -1,1 +1,46 @@
-<p>feature-product works!</p>
+<div class="container mt-2">
+<div class="row ">
+    <p-toast></p-toast>
+    <p-confirmDialog></p-confirmDialog>
+    <div *ngIf="loading"> <p-progressSpinner 
+        styleClass="w-4rem h-4rem" 
+        strokeWidth="8" 
+        fill="var(--surface-ground)" 
+        animationDuration=".5s" /></div> 
+    <div class="card flex justify-content-center">
+        <div class="flex flex-column gap-2 p-3">
+           <label for="search"> <i class="pi pi-search">Search for products 
+              </i> </label>
+            <input 
+            placeholder="Search for products.."
+                pInputText
+                [(ngModel)]="searchBar" />
+        </div>
+    </div>
+        <div class="col-md-4" *ngFor="let item of productList |search:searchBar">
+        <br>
+        <div class="card flex justify-content-center ">
+    <p-card header={{item.title|uppercase}} >
+        <ng-template pTemplate="header">
+            <img  [routerLink]=" ['/productdetails',item._id]" alt="Card" [src]="item.imageCover" />
+                <h2>{{'€'+item.price  }}</h2>
+        </ng-template>
+        <p>{{item.description|trim:150}}</p>
+        <ng-template pTemplate="footer">
+            <div class="flex gap-3 mt-2 justify-content-between align-items-center">
+                <p-rating  [(ngModel)]="item.ratingsAverage" [readonly]="true" [cancel]="false" />
+                <p-button icon="pi pi-cart-arrow-down" (click)="addtoCart(item._id)" severity="primary" raised="true" label="Add to cart" />
+            </div>
+        </ng-template>
+    </p-card>
+</div>
+</div>
+</div>
+    <p-paginator 
+    *ngIf="!loading"
+        (onPageChange)="onPageChange($event)" 
+        [first]="first" 
+        [rows]="rows" 
+        [totalRecords]="productList.length" 
+        [rowsPerPageOptions]="[10, 20, 30]" />
+</div>

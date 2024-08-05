@@ -1,0 +1,18 @@
+::ng-deep.p-rating .p-rating-item.p-rating-item-active .p-rating-icon{
+    color: #f44336 !important;
+}
+p-button {
+    transition: transform 1s , opacity 1s;
+    transform: translateX(50%);
+    opacity: 0;
+}
+p-button:hover{
+    opacity: 1;
+    transform: translateX(0%);
+}
+img:hover{
+    cursor: pointer;
+}
+button, input, optgroup, select, textarea {
+    text-align: center;
+}
